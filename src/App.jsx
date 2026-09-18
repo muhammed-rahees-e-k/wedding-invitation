@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderHero from './components/HeaderHero';
+import CoupleBanner from './components/CoupleBanner';
 import InvitationText from './components/InvitationText';
 import CalendarSchedule from './components/CalendarSchedule';
 import VenueSection from './components/VenueSection';
@@ -56,6 +57,7 @@ export default function App() {
         style={{ maxWidth: viewMode === 'full' ? '640px' : '440px' }}
       >
         <HeaderHero />
+        <CoupleBanner />
         <InvitationText />
         <CalendarSchedule />
         <VenueSection onOpenMap={() => setIsMapOpen(true)} />

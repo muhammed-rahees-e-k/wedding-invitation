@@ -10,7 +10,7 @@ export default function FooterHero() {
         viewBox="0 0 440 30" 
         preserveAspectRatio="none"
       >
-        <path d="M0,0 L440,0 L440,10 C290,30 150,0 0,25 Z" fill="#211915" />
+        <path d="M0,0 L440,0 L440,10 C290,30 150,0 0,25 Z" fill="var(--accent-dark)" />
       </svg>
 
       <section className="inv-section" style={{ paddingTop: '2rem', paddingBottom: '1.5rem' }}>

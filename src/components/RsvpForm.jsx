@@ -1,39 +1,11 @@
-import React, { useState } from 'react';
-import confetti from 'canvas-confetti';
-import { Check, Heart } from 'lucide-react';
+import React from 'react';
+import { MapPin, Navigation, Heart } from 'lucide-react';
 
 export default function RsvpForm() {
-  const [name, setName] = useState('');
-  const [guests, setGuests] = useState(1);
-  const [attending, setAttending] = useState('yes');
-  const [needTransport, setNeedTransport] = useState('no');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name.trim()) return;
-
-    // Trigger confetti
-    try {
-      confetti({
-        particleCount: 80,
-        spread: 60,
-        origin: { y: 0.7 },
-        colors: ['#f4efe6', '#c5a059', '#ffffff', '#8b262a']
-      });
-    } catch (err) {
-      console.log('Confetti error:', err);
-    }
-
-    setIsSubmitted(true);
-  };
-
-  const resetForm = () => {
-    setIsSubmitted(false);
-  };
+  const mapsDirectionsUrl = "https://www.google.com/maps/place/TK+Garden/@11.198167,76.2303536,17z";
 
   return (
-    <div className="rsvp-dark-section">
+    <div className="rsvp-dark-section" style={{ backgroundColor: '#211915', color: '#f4efe6', padding: '3.5rem 1.8rem 3rem 1.8rem' }}>
       {/* Top SVG Wavy Divider */}
       <svg 
         className="rsvp-wavy-top" 
@@ -43,142 +15,126 @@ export default function RsvpForm() {
         <path d="M0,0 C150,25 290,0 440,20 L440,25 L0,25 Z" fill="#211915" />
       </svg>
 
-      <h2 className="rsvp-title">PLEASE COMPLETE THE FORM</h2>
-
-      {/* Heart Flourish */}
-      <div className="section-divider" style={{ margin: '0.4rem auto 1.8rem auto', opacity: 0.5 }}>
-        <div className="divider-line" style={{ width: '25px', backgroundColor: '#f4efe6' }}></div>
-        <span style={{ fontSize: '8px', color: '#f4efe6' }}>♥</span>
-        <div className="divider-line" style={{ width: '25px', backgroundColor: '#f4efe6' }}></div>
-      </div>
-
-      {isSubmitted ? (
+      <div style={{ maxWidth: '340px', margin: '0 auto', textAlign: 'center' }}>
+        
+        {/* MapPin Icon Badge */}
         <div style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          padding: '2rem 1.5rem',
-          borderRadius: '4px',
-          border: '1px solid rgba(244, 239, 230, 0.2)',
-          textAlign: 'center'
+          width: '44px',
+          height: '44px',
+          borderRadius: '50%',
+          border: '1px solid rgba(244, 239, 230, 0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 1rem auto',
+          color: '#f4efe6'
         }}>
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            background: 'rgba(244, 239, 230, 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 1rem auto'
+          <MapPin size={22} strokeWidth={1.5} />
+        </div>
+
+        <h2 style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: '1.25rem',
+          letterSpacing: '2.5px',
+          textTransform: 'uppercase',
+          fontStyle: 'italic',
+          marginBottom: '0.4rem',
+          color: '#f4efe6'
+        }}>
+          JOIN US AT THE VENUE
+        </h2>
+
+        {/* Heart Flourish */}
+        <div className="section-divider" style={{ margin: '0.4rem auto 1.5rem auto', opacity: 0.5 }}>
+          <div className="divider-line" style={{ width: '25px', backgroundColor: '#f4efe6' }}></div>
+          <span style={{ fontSize: '8px', color: '#f4efe6' }}>♥</span>
+          <div className="divider-line" style={{ width: '25px', backgroundColor: '#f4efe6' }}></div>
+        </div>
+
+        {/* Venue Information Box */}
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.04)',
+          borderRadius: '8px',
+          padding: '1.5rem 1.2rem',
+          border: '1px solid rgba(244, 239, 230, 0.15)',
+          marginBottom: '1.8rem'
+        }}>
+          <h3 style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '1rem',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            fontWeight: '600',
+            color: '#f4efe6',
+            marginBottom: '0.4rem'
           }}>
-            <Check size={24} color="#f4efe6" />
-          </div>
-          
-          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#f4efe6', marginBottom: '0.5rem', fontStyle: 'italic' }}>
-            Thank You, {name}!
+            TK GARDEN AUDITORIUM
           </h3>
-          
-          <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: '#d1c7bc', lineHeight: '1.5', marginBottom: '1.5rem' }}>
-            {attending === 'yes' ? (
-              <>We have recorded your RSVP for <strong>{guests} {guests > 1 ? 'guests' : 'guest'}</strong>. We can't wait to celebrate with you!</>
-            ) : (
-              <>We will miss you! Thank you for letting us know.</>
-            )}
+
+          <p style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: '1rem',
+            color: '#d1c7bc',
+            fontStyle: 'italic',
+            marginBottom: '0.8rem'
+          }}>
+            Wandoor, Malappuram, Kerala
           </p>
 
-          <button 
-            onClick={resetForm}
-            style={{
-              background: 'transparent',
-              border: '1px solid rgba(244, 239, 230, 0.4)',
-              color: '#f4efe6',
-              padding: '0.5rem 1rem',
-              fontSize: '0.7rem',
-              fontFamily: 'var(--font-sans)',
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              cursor: 'pointer'
-            }}
-          >
-            EDIT RSVP RESPONSE
-          </button>
+          <p style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.75rem',
+            letterSpacing: '1.5px',
+            textTransform: 'uppercase',
+            color: '#c5a059',
+            fontWeight: '500'
+          }}>
+            18 OCTOBER 2026 | 5:00 PM ONWARDS
+          </p>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} style={{ maxWidth: '340px', margin: '0 auto' }}>
-          
-          {/* Guest Name */}
-          <div className="form-group">
-            <label className="form-label">First and last name</label>
-            <input 
-              type="text" 
-              required
-              placeholder="e.g. Eleanor Vance"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-input"
-            />
-          </div>
 
-          {/* Number of guests */}
-          <div className="form-group">
-            <label className="form-label">Number of guests</label>
-            <div className="counter-widget">
-              <button 
-                type="button"
-                className="counter-btn"
-                onClick={() => setGuests(Math.max(1, guests - 1))}
-              >
-                −
-              </button>
-              <div className="counter-value">{guests}</div>
-              <button 
-                type="button"
-                className="counter-btn"
-                onClick={() => setGuests(guests + 1)}
-              >
-                +
-              </button>
-            </div>
-          </div>
+        {/* Navigation Directions Button */}
+        <a 
+          href={mapsDirectionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justify: 'center',
+            gap: '8px',
+            width: '100%',
+            padding: '0.85rem 1.4rem',
+            background: '#f4efe6',
+            color: '#211915',
+            borderRadius: '24px',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.78rem',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            fontWeight: '600',
+            textDecoration: 'none',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.25)',
+            transition: 'all 0.25s ease'
+          }}
+        >
+          <Navigation size={15} />
+          GET DIRECTIONS ON GOOGLE MAPS
+        </a>
 
-          {/* Attendance Choice */}
-          <div className="form-group" style={{ marginTop: '1.5rem' }}>
-            <label className="form-label">Will you attend?</label>
-            <div className="radio-group">
-              <label className="radio-label" onClick={() => setAttending('yes')}>
-                <span className={`radio-custom ${attending === 'yes' ? 'checked' : ''}`}></span>
-                <span>Yes, with pleasure</span>
-              </label>
-              <label className="radio-label" onClick={() => setAttending('no')}>
-                <span className={`radio-custom ${attending === 'no' ? 'checked' : ''}`}></span>
-                <span>Regretfully decline</span>
-              </label>
-            </div>
-          </div>
+        {/* Warm Note */}
+        <p style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: '0.95rem',
+          fontStyle: 'italic',
+          color: '#d1c7bc',
+          marginTop: '1.6rem',
+          lineHeight: '1.5'
+        }}>
+          We eagerly look forward to seeing you and celebrating this special occasion together!
+        </p>
 
-          {/* Transportation seat requirement */}
-          <div className="form-group" style={{ marginTop: '1.5rem' }}>
-            <label className="form-label">
-              Do you require a seat on transportation or another service?
-            </label>
-            <div className="radio-group">
-              <label className="radio-label" onClick={() => setNeedTransport('yes')}>
-                <span className={`radio-custom ${needTransport === 'yes' ? 'checked' : ''}`}></span>
-                <span>Yes</span>
-              </label>
-              <label className="radio-label" onClick={() => setNeedTransport('no')}>
-                <span className={`radio-custom ${needTransport === 'no' ? 'checked' : ''}`}></span>
-                <span>No</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <button type="submit" className="btn-submit">
-            SEND
-          </button>
-
-        </form>
-      )}
+      </div>
     </div>
   );
 }

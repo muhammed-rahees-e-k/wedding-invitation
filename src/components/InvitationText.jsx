@@ -2,29 +2,18 @@ import React from 'react';
 
 export default function InvitationText() {
   return (
-    <section className="inv-section" style={{ paddingTop: '1rem', paddingBottom: '2rem' }}>
-      <h2 className="dear-title">DEAR FAMILY AND FRIENDS!</h2>
-      
-      <p className="dear-text">
-        We are so happy to invite you to share this meaningful day with us. 
-        Your presence will make our wedding even more special.
+    <section className="inv-section" style={{ paddingTop: '1.5rem', paddingBottom: '1.5rem' }}>
+      <p style={{
+        fontFamily: 'var(--font-serif)',
+        fontSize: '1.15rem',
+        fontStyle: 'italic',
+        lineHeight: '1.6',
+        color: 'var(--text-primary)',
+        maxWidth: '340px',
+        margin: '0 auto'
+      }}>
+        "Together is a wonderful place to be. We cordially invite you to celebrate our union."
       </p>
-
-      <div style={{ marginTop: '1.8rem' }}>
-        <p className="dear-signoff">With love,</p>
-        <p className="dear-names">
-          <span>Rashad</span>
-          <span className="ampersand">&amp;</span>
-          <span>Shifa Sibin</span>
-        </p>
-      </div>
-
-      {/* Heart Separator */}
-      <div className="section-divider" style={{ marginTop: '2rem' }}>
-        <div className="divider-line" style={{ width: '30px' }}></div>
-        <span style={{ fontSize: '8px' }}>♥</span>
-        <div className="divider-line" style={{ width: '30px' }}></div>
-      </div>
     </section>
   );
 }

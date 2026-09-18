@@ -4,8 +4,8 @@ import { X, MapPin, Navigation, ExternalLink } from 'lucide-react';
 export default function MapModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  const mapUrl = "https://maps.google.com/maps?q=Maplewood+Estate,Greenfield,NY&t=&z=15&ie=UTF8&iwloc=&output=embed";
-  const externalMapUrl = "https://www.google.com/maps/search/?api=1&query=Maplewood+Estate+123+Willow+Lane+Greenfield+NY";
+  const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.857640668476!2d76.2303536!3d11.198167000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6316c4dee0701%3A0x9eb85cc96b6a1603!2sTK%20Garden!5e0!3m2!1sen!2sin!4v1789723409819!5m2!1sen!2sin";
+  const externalMapUrl = "https://www.google.com/maps/place/TK+Garden/@11.198167,76.2303536,17z";
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -22,17 +22,17 @@ export default function MapModal({ isOpen, onClose }) {
         </div>
 
         <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
-          Maplewood Estate
+          TK Garden Auditorium
         </h3>
 
         <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '1.2rem' }}>
-          123 Willow Lane, Greenfield, NY 12345
+          Wandoor, Malappuram, Kerala
         </p>
 
         {/* Map Embed Frame */}
         <div style={{
           width: '100%',
-          height: '260px',
+          height: '280px',
           borderRadius: '4px',
           overflow: 'hidden',
           marginBottom: '1.5rem',
@@ -40,14 +40,14 @@ export default function MapModal({ isOpen, onClose }) {
           boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
         }}>
           <iframe 
-            title="Maplewood Estate Location Map"
+            title="TK Garden Auditorium Location Map"
             src={mapUrl}
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
             allowFullScreen="" 
             loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
+            referrerPolicy="strict-origin-when-cross-origin"
           ></iframe>
         </div>
 

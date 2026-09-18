@@ -5,7 +5,7 @@ export default function CalendarSchedule() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const weddingDate = new Date('2026-05-24T11:00:00');
+    const weddingDate = new Date('2026-10-18T17:00:00');
 
     const updateTimer = () => {
       const now = new Date();
@@ -28,131 +28,305 @@ export default function CalendarSchedule() {
   }, []);
 
   const handleAddToCalendar = () => {
-    const title = encodeURIComponent("Rashad & Shifa Sibin's Wedding");
-    const details = encodeURIComponent("Join us to celebrate our wedding at Maplewood Estate!");
-    const location = encodeURIComponent("Maplewood Estate, 123 Willow Lane, Greenfield, NY 12345");
-    const startDate = "20260524T110000Z";
-    const endDate = "20260524T190000Z";
+    const title = encodeURIComponent("Rashad & Shifa Sibin's Wedding Reception");
+    const details = encodeURIComponent("With the grace of Almighty Allah and the blessings of our families, we cordially invite you to celebrate our Wedding Reception!");
+    const location = encodeURIComponent("TK Garden Auditorium, Wandoor, Kerala");
+    const startDate = "20261018T170000Z";
+    const endDate = "20261018T220000Z";
     
     const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
     window.open(googleCalendarUrl, '_blank');
   };
 
+  // October 2026 starts on Thursday (index 3: 0=Mon, 1=Tue, 2=Wed, 3=Thu)
+  const emptyDays = ['', '', ''];
+  const monthDays = Array.from({ length: 31 }, (_, i) => i + 1);
+
   return (
-    <section className="inv-section" style={{ paddingTop: '1rem', paddingBottom: '3rem' }}>
-      <h2 className="month-title">MAY 2026</h2>
-
-      {/* Mini Calendar Grid */}
-      <div className="calendar-grid">
-        <div className="cal-day-header">MON</div>
-        <div className="cal-day-header">TUE</div>
-        <div className="cal-day-header">WED</div>
-        <div className="cal-day-header">THU</div>
-        <div className="cal-day-header">FRI</div>
-        <div className="cal-day-header">SAT</div>
-        <div className="cal-day-header">SUN</div>
-
-        <div className="cal-day-num">18</div>
-        <div className="cal-day-num">19</div>
-        <div className="cal-day-num">20</div>
-        <div className="cal-day-num">21</div>
-        <div className="cal-day-num">22</div>
-        <div className="cal-day-num">23</div>
-        <div className="cal-day-num">
-          <div className="cal-highlight-heart">24</div>
-        </div>
-      </div>
-
-      {/* Countdown Timer */}
+    <section style={{ padding: '0 0.8rem 2.5rem 0.8rem' }}>
+      
+      {/* Outer Main Section Box in original dark espresso theme */}
       <div style={{
-        background: 'rgba(43, 35, 31, 0.04)',
-        padding: '0.8rem 1rem',
-        borderRadius: '4px',
-        maxWidth: '320px',
-        margin: '0 auto 2.5rem auto',
-        border: '1px solid rgba(43, 35, 31, 0.08)'
+        backgroundColor: '#211915',
+        color: '#ffffff',
+        borderRadius: '6px',
+        padding: '2.5rem 1.4rem 2rem 1.4rem',
+        textAlign: 'center',
+        boxShadow: '0 10px 30px rgba(33, 25, 21, 0.25)',
+        position: 'relative'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.75rem', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
-          <Clock size={12} />
-          <span>COUNTDOWN TO THE BIG DAY</span>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-around', fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)' }}>
-          <div><strong>{timeLeft.days}</strong> <span style={{ fontSize: '0.65rem', display: 'block', textTransform: 'uppercase', fontFamily: 'var(--font-sans)', color: 'var(--text-muted)' }}>Days</span></div>
-          <div>:</div>
-          <div><strong>{timeLeft.hours}</strong> <span style={{ fontSize: '0.65rem', display: 'block', textTransform: 'uppercase', fontFamily: 'var(--font-sans)', color: 'var(--text-muted)' }}>Hours</span></div>
-          <div>:</div>
-          <div><strong>{timeLeft.minutes}</strong> <span style={{ fontSize: '0.65rem', display: 'block', textTransform: 'uppercase', fontFamily: 'var(--font-sans)', color: 'var(--text-muted)' }}>Mins</span></div>
-          <div>:</div>
-          <div><strong>{timeLeft.seconds}</strong> <span style={{ fontSize: '0.65rem', display: 'block', textTransform: 'uppercase', fontFamily: 'var(--font-sans)', color: 'var(--text-muted)' }}>Secs</span></div>
-        </div>
-      </div>
 
-      {/* Timeline Schedule */}
-      <div style={{ position: 'relative', maxWidth: '300px', margin: '0 auto' }}>
-        
-        {/* SVG Wavy Line with Heart nodes */}
-        <svg 
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-          viewBox="0 0 300 360" 
-          preserveAspectRatio="none"
+        {/* Invitation Opening Text */}
+        <p style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: '1.08rem',
+          lineHeight: '1.75',
+          letterSpacing: '0.3px',
+          color: '#f4f7f0',
+          maxWidth: '340px',
+          margin: '0 auto 1.8rem auto',
+          fontWeight: '400'
+        }}>
+          With the grace of Almighty Allah and the blessings of our families, we cordially invite you to celebrate our Wedding Reception
+        </p>
+
+        {/* Soft Divider */}
+        <div style={{
+          width: '100%',
+          height: '1px',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          margin: '1.8rem 0'
+        }}></div>
+
+        {/* Date Display Banner */}
+        <div style={{ margin: '1.5rem 0' }}>
+          <div style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.8rem',
+            letterSpacing: '4px',
+            textTransform: 'uppercase',
+            color: 'rgba(255, 255, 255, 0.85)',
+            marginBottom: '0.4rem'
+          }}>
+            OCTOBER
+          </div>
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justify: 'center',
+            gap: '1.5rem',
+            margin: '0.5rem 0'
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.85rem',
+              letterSpacing: '3px',
+              textTransform: 'uppercase',
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              SUNDAY
+            </span>
+
+            <span style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: '3.6rem',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              lineHeight: '0.9',
+              color: '#ffffff'
+            }}>
+              18
+            </span>
+
+            <span style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.85rem',
+              letterSpacing: '3px',
+              textTransform: 'uppercase',
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              2026
+            </span>
+          </div>
+        </div>
+
+        {/* Soft Divider */}
+        <div style={{
+          width: '100%',
+          height: '1px',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          margin: '1.8rem 0'
+        }}></div>
+
+        {/* Countdown Header */}
+        <div style={{ margin: '1.8rem 0 1rem 0' }}>
+          <div style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.75rem',
+            letterSpacing: '2.5px',
+            textTransform: 'uppercase',
+            color: 'rgba(255, 255, 255, 0.85)',
+            marginBottom: '1rem'
+          }}>
+            COUNTDOWN TO THE BIG DAY
+          </div>
+
+          {/* Countdown Numbers */}
+          <div style={{
+            display: 'flex',
+            justify: 'center',
+            alignItems: 'baseline',
+            gap: '0.6rem',
+            fontFamily: 'var(--font-serif)',
+            fontSize: '1.8rem',
+            color: '#ffffff',
+            fontWeight: '400'
+          }}>
+            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+              <div>{String(timeLeft.days).padStart(2, '0')}</div>
+              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Days</div>
+            </div>
+            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
+
+            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+              <div>{String(timeLeft.hours).padStart(2, '0')}</div>
+              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Hours</div>
+            </div>
+            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
+
+            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+              <div>{String(timeLeft.minutes).padStart(2, '0')}</div>
+              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Min</div>
+            </div>
+            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
+
+            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+              <div>{String(timeLeft.seconds).padStart(2, '0')}</div>
+              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Sec</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Darker Inner Card for Calendar Grid */}
+        <div style={{
+          backgroundColor: '#16110e',
+          borderRadius: '8px',
+          padding: '1.5rem 0.8rem 1.6rem 0.8rem',
+          margin: '2rem 0 0.5rem 0',
+          boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.25)'
+        }}>
+          <h3 style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.85rem',
+            letterSpacing: '3px',
+            textTransform: 'uppercase',
+            color: '#ffffff',
+            fontWeight: '600',
+            marginBottom: '0.2rem'
+          }}>
+            THE BIG DAY
+          </h3>
+
+          <p style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: '0.95rem',
+            fontStyle: 'italic',
+            color: 'rgba(255, 255, 255, 0.8)',
+            marginBottom: '1.2rem'
+          }}>
+            OCTOBER 2026
+          </p>
+
+          {/* Full October 2026 Calendar Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(7, 1fr)',
+            gap: '8px 4px',
+            maxWidth: '300px',
+            margin: '0 auto',
+            alignItems: 'center'
+          }}>
+            {/* Headers */}
+            {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => (
+              <div key={day} style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.62rem',
+                letterSpacing: '1px',
+                color: 'rgba(255, 255, 255, 0.7)',
+                fontWeight: '600',
+                paddingBottom: '4px'
+              }}>
+                {day}
+              </div>
+            ))}
+
+            {/* Empty slots before Oct 1 */}
+            {emptyDays.map((_, idx) => (
+              <div key={`empty-${idx}`} />
+            ))}
+
+            {/* Month Days 1..31 */}
+            {monthDays.map((num) => {
+              const isTargetDay = num === 18;
+              return (
+                <div key={num} style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '0.95rem',
+                  color: isTargetDay ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
+                  height: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative'
+                }}>
+                  {isTargetDay ? (
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      border: '1.5px solid #ffffff',
+                      borderRadius: '50% 50% 50% 50% / 40% 40% 60% 60%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: '600',
+                      boxShadow: '0 0 8px rgba(255,255,255,0.4)',
+                      position: 'relative'
+                    }}>
+                      <svg 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="#ffffff" 
+                        strokeWidth="1.5"
+                        style={{
+                          position: 'absolute',
+                          width: '32px',
+                          height: '32px',
+                          top: '-1px',
+                          left: '-1px'
+                        }}
+                      >
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                      </svg>
+                      <span style={{ position: 'relative', zIndex: 2 }}>{num}</span>
+                    </div>
+                  ) : (
+                    num
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+
+        {/* Add to Calendar button inside card */}
+        <button 
+          onClick={handleAddToCalendar}
+          style={{
+            marginTop: '1.5rem',
+            background: 'transparent',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+            color: '#ffffff',
+            padding: '0.6rem 1.4rem',
+            fontSize: '0.7rem',
+            fontFamily: 'var(--font-sans)',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            transition: 'all 0.2s ease'
+          }}
         >
-          <path 
-            d="M 270 10 C 270 40, 190 40, 190 80 C 190 120, 175 140, 175 170 C 175 210, 210 230, 210 260 C 210 290, 250 300, 250 340" 
-            stroke="#2b231f" 
-            strokeWidth="0.8" 
-            fill="none" 
-            strokeDasharray="3 3"
-          />
-          
-          {/* Nodes */}
-          <circle cx="270" cy="10" r="3" fill="#2b231f" />
-          <circle cx="190" cy="80" r="3" fill="#2b231f" />
-          <circle cx="175" cy="170" r="3" fill="#2b231f" />
-          <circle cx="210" cy="260" r="3" fill="#2b231f" />
-          <circle cx="250" cy="340" r="3" fill="#2b231f" />
-        </svg>
-
-        {/* Schedule Items */}
-        <div style={{ padding: '0 1rem' }}>
-
-          <div style={{ textAlign: 'left', marginBottom: '2.5rem', width: '60%' }}>
-            <div className="timeline-time">11:00</div>
-            <div className="timeline-label">GUEST ARRIVAL</div>
-          </div>
-
-          <div style={{ textAlign: 'right', marginBottom: '2.5rem', width: '55%', marginLeft: 'auto' }}>
-            <div className="timeline-time">13:00</div>
-            <div className="timeline-label">LUNCH</div>
-          </div>
-
-          <div style={{ textAlign: 'left', marginBottom: '2.5rem', width: '50%' }}>
-            <div className="timeline-time">15:00</div>
-            <div className="timeline-label">CELEBRATION</div>
-          </div>
-
-          <div style={{ textAlign: 'right', marginBottom: '2.5rem', width: '65%', marginLeft: 'auto' }}>
-            <div className="timeline-time">18:00</div>
-            <div className="timeline-label">DINNER</div>
-          </div>
-
-          <div style={{ textAlign: 'left', width: '70%' }}>
-            <div className="timeline-time">19:00</div>
-            <div className="timeline-label">END OF THE EVENING</div>
-          </div>
-
-        </div>
+          <CalendarIcon size={13} />
+          SAVE TO CALENDAR
+        </button>
 
       </div>
 
-      {/* Add to calendar button */}
-      <button 
-        onClick={handleAddToCalendar}
-        className="btn-outline"
-        style={{ marginTop: '2.5rem', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-      >
-        <CalendarIcon size={14} />
-        SAVE TO CALENDAR
-      </button>
     </section>
   );
 }
