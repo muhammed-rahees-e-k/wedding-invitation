@@ -6,9 +6,9 @@ export default function HeaderHero() {
       {/* Top Header Text with Side Padding */}
       <div className="header-text-block">
         <h1 className="header-names">
-          <span>Arshad</span>
+          <span>Rashad</span>
           <span className="ampersand">&amp;</span>
-          <span>Athika</span>
+          <span>Shifa Sibin</span>
         </h1>
       </div>
 
@@ -16,7 +16,7 @@ export default function HeaderHero() {
       <div className="hero-photo-fullwidth">
         <img 
           src="/images/rishu.png" 
-          alt="Arshad & Athika" 
+          alt="Rashad & Shifa Sibin" 
           className="hero-photo"
         />
       </div>

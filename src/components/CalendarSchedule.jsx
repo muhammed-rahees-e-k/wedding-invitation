@@ -78,53 +78,62 @@ export default function CalendarSchedule() {
           margin: '1.8rem 0'
         }}></div>
 
-        {/* Date Display Banner */}
-        <div style={{ margin: '1.5rem 0' }}>
+        {/* Date Display Banner - Symmetrically Grid Centered */}
+        <div style={{ margin: '1.5rem auto', width: '100%', textAlign: 'center' }}>
           <div style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '0.8rem',
             letterSpacing: '4px',
             textTransform: 'uppercase',
             color: 'rgba(255, 255, 255, 0.85)',
-            marginBottom: '0.4rem'
+            marginBottom: '0.6rem',
+            textAlign: 'center'
           }}>
             OCTOBER
           </div>
 
           <div style={{
-            display: 'flex',
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            justify: 'center',
-            gap: '1.5rem',
-            margin: '0.5rem 0'
+            justifyContent: 'center',
+            maxWidth: '320px',
+            margin: '0 auto',
+            width: '100%'
           }}>
             <span style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
-              letterSpacing: '3px',
+              fontSize: 'clamp(0.75rem, 3.2vw, 0.88rem)',
+              letterSpacing: '2.5px',
               textTransform: 'uppercase',
-              color: 'rgba(255, 255, 255, 0.9)'
+              color: 'rgba(255, 255, 255, 0.9)',
+              textAlign: 'right',
+              paddingRight: '0.8rem'
             }}>
               SUNDAY
             </span>
 
             <span style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: '3.6rem',
+              fontSize: 'clamp(2.8rem, 11vw, 3.8rem)',
               fontStyle: 'italic',
               fontWeight: '400',
-              lineHeight: '0.9',
-              color: '#ffffff'
+              lineHeight: '1',
+              color: '#ffffff',
+              textAlign: 'center',
+              display: 'inline-block'
             }}>
               18
             </span>
 
             <span style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
-              letterSpacing: '3px',
+              fontSize: 'clamp(0.75rem, 3.2vw, 0.88rem)',
+              letterSpacing: '2.5px',
               textTransform: 'uppercase',
-              color: 'rgba(255, 255, 255, 0.9)'
+              color: 'rgba(255, 255, 255, 0.9)',
+              textAlign: 'left',
+              paddingLeft: '0.8rem'
             }}>
               2026
             </span>
@@ -136,72 +145,79 @@ export default function CalendarSchedule() {
           width: '100%',
           height: '1px',
           backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          margin: '1.8rem 0'
+          margin: '1.8rem auto'
         }}></div>
 
-        {/* Countdown Header */}
-        <div style={{ margin: '1.8rem 0 1rem 0' }}>
+        {/* Countdown Header & Timer - Symmetrically Grid Centered */}
+        <div style={{ margin: '1.8rem auto 1rem auto', width: '100%', textAlign: 'center' }}>
           <div style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '0.75rem',
             letterSpacing: '2.5px',
             textTransform: 'uppercase',
             color: 'rgba(255, 255, 255, 0.85)',
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            textAlign: 'center'
           }}>
             COUNTDOWN TO THE BIG DAY
           </div>
 
-          {/* Countdown Numbers */}
+          {/* Countdown Numbers Grid */}
           <div style={{
-            display: 'flex',
-            justify: 'center',
-            alignItems: 'baseline',
-            gap: '0.6rem',
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr auto 1fr auto 1fr',
+            alignItems: 'center',
+            justifyContent: 'center',
+            maxWidth: '290px',
+            margin: '0 auto',
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.8rem',
+            fontSize: 'clamp(1.4rem, 5.5vw, 1.8rem)',
             color: '#ffffff',
             fontWeight: '400'
           }}>
-            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+            <div style={{ textAlign: 'center' }}>
               <div>{String(timeLeft.days).padStart(2, '0')}</div>
-              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Days</div>
+              <div style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px', textAlign: 'center' }}>DAYS</div>
             </div>
-            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
+            
+            <div style={{ opacity: 0.6, fontSize: '1.2rem', textAlign: 'center', paddingBottom: '14px' }}>:</div>
 
-            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+            <div style={{ textAlign: 'center' }}>
               <div>{String(timeLeft.hours).padStart(2, '0')}</div>
-              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Hours</div>
+              <div style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px', textAlign: 'center' }}>HOURS</div>
             </div>
-            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
 
-            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+            <div style={{ opacity: 0.6, fontSize: '1.2rem', textAlign: 'center', paddingBottom: '14px' }}>:</div>
+
+            <div style={{ textAlign: 'center' }}>
               <div>{String(timeLeft.minutes).padStart(2, '0')}</div>
-              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Min</div>
+              <div style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px', textAlign: 'center' }}>MIN</div>
             </div>
-            <div style={{ opacity: 0.6, fontSize: '1.4rem' }}>:</div>
 
-            <div style={{ textAlign: 'center', minWidth: '42px' }}>
+            <div style={{ opacity: 0.6, fontSize: '1.2rem', textAlign: 'center', paddingBottom: '14px' }}>:</div>
+
+            <div style={{ textAlign: 'center' }}>
               <div>{String(timeLeft.seconds).padStart(2, '0')}</div>
-              <div style={{ fontSize: '0.65rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>Sec</div>
+              <div style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px', textAlign: 'center' }}>SEC</div>
             </div>
           </div>
         </div>
 
-        {/* Darker Inner Card for Calendar Grid */}
+        {/* Inner Card for Calendar Grid with Warm Gold Accent Color */}
         <div style={{
-          backgroundColor: '#16110e',
+          backgroundColor: '#2e251b',
           borderRadius: '8px',
-          padding: '1.5rem 0.8rem 1.6rem 0.8rem',
+          padding: '1.6rem 0.8rem 1.6rem 0.8rem',
           margin: '2rem 0 0.5rem 0',
-          boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.25)'
+          border: '1px solid rgba(197, 160, 89, 0.35)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
         }}>
           <h3 style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '0.85rem',
             letterSpacing: '3px',
             textTransform: 'uppercase',
-            color: '#ffffff',
+            color: '#c5a059',
             fontWeight: '600',
             marginBottom: '0.2rem'
           }}>
@@ -212,7 +228,7 @@ export default function CalendarSchedule() {
             fontFamily: 'var(--font-serif)',
             fontSize: '0.95rem',
             fontStyle: 'italic',
-            color: 'rgba(255, 255, 255, 0.8)',
+            color: '#f4efe6',
             marginBottom: '1.2rem'
           }}>
             OCTOBER 2026
@@ -264,19 +280,19 @@ export default function CalendarSchedule() {
                     <div style={{
                       width: '32px',
                       height: '32px',
-                      border: '1.5px solid #ffffff',
+                      border: '1.5px solid #c5a059',
                       borderRadius: '50% 50% 50% 50% / 40% 40% 60% 60%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontWeight: '600',
-                      boxShadow: '0 0 8px rgba(255,255,255,0.4)',
+                      boxShadow: '0 0 10px rgba(197, 160, 89, 0.4)',
                       position: 'relative'
                     }}>
                       <svg 
                         viewBox="0 0 24 24" 
                         fill="none" 
-                        stroke="#ffffff" 
+                        stroke="#c5a059" 
                         strokeWidth="1.5"
                         style={{
                           position: 'absolute',
@@ -288,7 +304,7 @@ export default function CalendarSchedule() {
                       >
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                       </svg>
-                      <span style={{ position: 'relative', zIndex: 2 }}>{num}</span>
+                      <span style={{ position: 'relative', zIndex: 2, color: '#c5a059' }}>{num}</span>
                     </div>
                   ) : (
                     num

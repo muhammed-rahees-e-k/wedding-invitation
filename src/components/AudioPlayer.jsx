@@ -3,110 +3,77 @@ import { Volume2, VolumeX, Music } from 'lucide-react';
 
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef(null);
-  const timerRef = useRef(null);
+  const audioRef = useRef(null);
 
-  // Soft romantic piano note melody generator using Web Audio API
-  const startRomanticSynth = () => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
-    }
-
-    const ctx = audioCtxRef.current;
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-
-    // Gentle chord progression: Fmaj7 - Cmaj7 - Am7 - G
-    const notes = [
-      // Fmaj7
-      { freq: 349.23, time: 0, duration: 1.8 },
-      { freq: 440.00, time: 0.3, duration: 1.8 },
-      { freq: 523.25, time: 0.6, duration: 1.8 },
-      { freq: 659.25, time: 0.9, duration: 1.8 },
-      // Cmaj7
-      { freq: 261.63, time: 2.0, duration: 1.8 },
-      { freq: 329.63, time: 2.3, duration: 1.8 },
-      { freq: 392.00, time: 2.6, duration: 1.8 },
-      { freq: 493.88, time: 2.9, duration: 1.8 },
-      // Am7
-      { freq: 220.00, time: 4.0, duration: 1.8 },
-      { freq: 261.63, time: 4.3, duration: 1.8 },
-      { freq: 329.63, time: 4.6, duration: 1.8 },
-      { freq: 392.00, time: 4.9, duration: 1.8 },
-      // G
-      { freq: 196.00, time: 6.0, duration: 1.8 },
-      { freq: 246.94, time: 6.3, duration: 1.8 },
-      { freq: 293.66, time: 6.6, duration: 1.8 },
-      { freq: 392.00, time: 6.9, duration: 1.8 },
-    ];
-
-    const playSequence = () => {
-      const now = ctx.currentTime;
-      notes.forEach((note) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(note.freq, now + note.time);
-
-        // Soft attack & decay envelope
-        gain.gain.setValueAtTime(0, now + note.time);
-        gain.gain.linearRampToValueAtTime(0.06, now + note.time + 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + note.time + note.duration);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now + note.time);
-        osc.stop(now + note.time + note.duration);
-      });
-    };
-
-    playSequence();
-    timerRef.current = setInterval(playSequence, 8200);
-  };
-
-  const stopRomanticSynth = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-    if (audioCtxRef.current) {
-      audioCtxRef.current.suspend();
-    }
-  };
-
-  const toggleMusic = () => {
-    if (isPlaying) {
-      stopRomanticSynth();
-      setIsPlaying(false);
-    } else {
-      startRomanticSynth();
-      setIsPlaying(true);
-    }
-  };
+  // High-quality romantic wedding instrumental MP3 track
+  const songUrl = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3";
 
   useEffect(() => {
+    audioRef.current = new Audio(songUrl);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
     return () => {
-      stopRomanticSynth();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
     };
   }, []);
 
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.log("Audio playback error:", err);
+      });
+    }
+  };
+
   return (
-    <button 
-      className="floating-audio-btn" 
-      onClick={toggleMusic}
-      title={isPlaying ? "Mute Background Music" : "Play Ambient Wedding Music"}
-      aria-label="Toggle background music"
-    >
-      {isPlaying ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-          <Volume2 size={20} />
-          <span className="music-pulse" style={{ fontSize: '10px' }}>♪</span>
-        </div>
-      ) : (
-        <VolumeX size={20} opacity={0.6} />
-      )}
-    </button>
+    <>
+      <button 
+        className="floating-audio-btn" 
+        onClick={toggleMusic}
+        title={isPlaying ? "Mute Romantic Wedding Music" : "Play Romantic Wedding Music"}
+        aria-label="Toggle background music"
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
+          backgroundColor: '#211915',
+          color: '#c5a059',
+          border: '1.5px solid #c5a059',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 18px rgba(0, 0, 0, 0.35)',
+          cursor: 'pointer',
+          zIndex: 1000,
+          transition: 'transform 0.25s ease, background-color 0.25s ease'
+        }}
+      >
+        {isPlaying ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Volume2 size={22} color="#c5a059" />
+            <span style={{ fontSize: '11px', animation: 'pulseGlow 1.5s infinite' }}>♪</span>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+            <VolumeX size={20} color="#f4efe6" opacity={0.7} />
+            <Music size={12} color="#c5a059" style={{ position: 'absolute', top: '8px', right: '8px' }} />
+          </div>
+        )}
+      </button>
+    </>
   );
 }
